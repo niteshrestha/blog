@@ -4,7 +4,7 @@
 	<title>Nitesh Shrestha</title>
 	<link rel="self" href="https://blog.niteshrestha.com.np/" />
 	<rights>2019</rights>
-	<updated>2019-11-25T06:57:34Z</updated>
+	<updated>2019-11-25T15:15:04Z</updated>
 	<logo>https://blog.niteshrestha.com.np/assets/images/header.png</logo>
 	<subtitle>Nitesh Shrestha!</subtitle>
 	<entry>
@@ -79,7 +79,7 @@
 		<id>https://blog.niteshrestha.com.np/posts/my-adobe-xd-experience</id>
 		<title>My Adobe XD Experience</title>
 		<link href="https://blog.niteshrestha.com.np/posts/my-adobe-xd-experience" />
-		<link rel="enclosure" type="image" href="https://blog.niteshrestha.com.np/assets/images/header.png" />
+		<link rel="enclosure" type="image" href="https://blog.niteshrestha.com.np/posts/images/prototyping-wiring-paper.png" />
 		<updated>2017-06-13T00:00:00Z</updated>
 		<content>&lt;p&gt;It's been almost 6 months since Adobe Experience Design launched on Windows 10 and I'm in love with it. Since when it was first released lots of features has been added and more features are coming with monthly updates. Thanks to entire team for making such an amazing product that I love to use. I have been using Adobe XD on Windows 10 since Day 1 and the amount of work the team has done is absolutely fantastic. There are so many things I love about it and there are some thing that I wish was there in it and in this article I'm going to talk about things that make me happy using Adobe XD and things that I wish was available in it.&lt;/p&gt;
 &lt;p&gt;So first of all lets talk about things I love about it.&lt;/p&gt;
@@ -98,7 +98,7 @@
 		<id>https://blog.niteshrestha.com.np/posts/from-powerpoint-to-adobe-xd</id>
 		<title>From PowerPoint to Adobe XD</title>
 		<link href="https://blog.niteshrestha.com.np/posts/from-powerpoint-to-adobe-xd" />
-		<link rel="enclosure" type="image" href="https://blog.niteshrestha.com.np/assets/images/header.png" />
+		<link rel="enclosure" type="image" href="https://blog.niteshrestha.com.np/posts/images/powerpoint.png" />
 		<updated>2017-01-27T00:00:00Z</updated>
 		<content>&lt;h1 id="from-powerpoint-to-adobe-xd"&gt;From PowerPoint to Adobe XD&lt;/h1&gt;
 &lt;p&gt;Designing a great app requires a great designing tool, for me that tool used to be PowerPoint. I'm that kind of guy who doesn't know how to use Photoshop or Illustrator. I have tried various other prototyping solutions which were good but I didn't enjoy them. I mostly design UWP Apps but I'm not a professional it's my hobby, it's a thing I enjoy doing. So, I choose to stick with PowerPoint. This article is about how I used to use PowerPoint as UI designing tool and then Adobe XD happened.&lt;/p&gt;
