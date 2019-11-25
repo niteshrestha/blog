@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<id>https://blog.niteshrestha.com.np/</id>
+	<title>Nitesh Shrestha</title>
+	<link rel="self" href="https://blog.niteshrestha.com.np/" />
+	<rights>2019</rights>
+	<updated>2019-11-25T06:57:34Z</updated>
+	<logo>https://blog.niteshrestha.com.np/assets/images/header.png</logo>
+	<subtitle>Nitesh Shrestha!</subtitle>
+	<entry>
+		<id>https://blog.niteshrestha.com.np/posts/setting-up-minecraft-bedrock-edition-server</id>
+		<title>Setting up Minecraft Bedrock Edition Server</title>
+		<link href="https://blog.niteshrestha.com.np/posts/setting-up-minecraft-bedrock-edition-server" />
+		<link rel="enclosure" type="image" href="https://blog.niteshrestha.com.np/posts/images/minecraft-header.jpg" />
+		<updated>2018-06-02T00:00:00Z</updated>
+		<content>&lt;p&gt;My first time playing Minecraft in Realm was in Windows Central Community realm, it was my first experience playing real online multiplayer game. It was exciting and fun playing with other people in the realm. I used to play a lot in the realm but when the world started to expand the server started to lag a lot because of tons of Redstone contraption. We started to talk about moving to a self-hosted server rather than using Mojang's realm but we couldn't find a way to host the server. Fast forward a year and here we are hosting a Minecraft Bedrock Edition server.&lt;/p&gt;
+&lt;p&gt;There are various options for you to host Minecraft server but the one I choose is &lt;a href="https://github.com/codehz/mcpeserver"&gt;MCPESever by CodeHz&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="setting-up-the-server"&gt;Setting up the server&lt;/h2&gt;
+&lt;p&gt;I'm running Ubuntu 17.10 on the server on top of which Minecraft Server Launcher is running. You will at least need SSH access to your server. Once you have successfully logged in you can start downloading some packages and MCPEServer.&lt;/p&gt;
+&lt;p&gt;First you will want type the following command in terminal.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install jq
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It will download necessary packages require for you to proceed forward. Now you will need to download the MCPEServer.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget $(curl -s https://api.github.com/repos/codehz/mcpeserver/releases/latest|jq -r '.assets[0].browser_download_url')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the download is completed, you will need to change permissions on the file before you can work with it.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chmod +x mcpeserver
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you will need to download the core binary for Minecraft server. You can do by&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./mcpeserver download
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now for the next step, you will need to have a .apk file of Minecraft. Once you have apk file for Minecraft you need to upload it to your server and then unpack assets from Minecraft using following command&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./mcpeserver unpack -apk filename.apk
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Don't forget to replace filename with actual file name for your apk file. Once you have done all of the above successfully you need to open 19132 port on your server to allow MCPEServer to communicate with clients that will connect to the server. Also make sure that port 19132 is opened as UDP port and not TCP, that is what I did and wondered why I can't connect to the server. So make sure it's UDP port 19132.&lt;/p&gt;
+&lt;p&gt;Now you are ready to start your server but before that start a Linux Screen it allows you to run a long running process without maintaining an active shell session. You will need it because you don't want the server to stop when you disconnect your SSH session. So type&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;screen
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;to start a session and then type&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./mcpeserver run
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now your server should be up and running and you should see the following screen.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/posts/images/minecraft_mcpeserver.png" class="img-fluid" alt="MCPEServer running" /&gt;&lt;em&gt;MCPEServer running&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="making-the-world-you-want"&gt;Making the world you want&lt;/h2&gt;
+&lt;p&gt;You should be good to go in Minecraft and connect to your server from Server tab in game. But the world as it is not fun to begin with as you spawn inside a dark cave so you will want to being with some good seed. You will need to edit server.properties file in /data/server.properties you might want to use vim to edit the file. First change your directory to data with cd data then vim server.properties&lt;/p&gt;
+&lt;p&gt;Full list of different properties is listed in the &lt;a href="https://github.com/MCMrARM/mcpelauncher-linux/wiki/Dedicated-Server"&gt;wiki&lt;/a&gt;. If you are editing the server.properties after you already have a world then you will need to delete the existing world for server.properties to come into effect. You can do so by removing world folder from games/com.mojang/minecraftWorlds&lt;/p&gt;
+&lt;h2 id="adding-some-flavor-the-world-with-mods"&gt;Adding some flavor the world with mods&lt;/h2&gt;
+&lt;p&gt;If you fancy some mods developer has also made some mods that you can find &lt;a href="https://mcpe.codehz.one/"&gt;here&lt;/a&gt; and he also makes it easier to apply his mods in server. You can view all the mods you can apply in server using&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./mcpeserver mods --remote
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="https://cdn-images-1.medium.com/max/2000/1*Z3T7_WAo_7JHVY6zbn2QjA.png" class="img-fluid" alt="mods list" /&gt;&lt;/p&gt;
+&lt;p&gt;and you can download and apply mod you want using&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./mcpeserver mods --download {mod_name}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;replace mod_name with the mod you want to download for example ping mod&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;./mcpeserver mods --download codehz/ping
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="uploading-the-existing-world"&gt;Uploading the existing world&lt;/h2&gt;
+&lt;p your_world_here=""&gt;Just put your world directory to games/com.mojang/minecraftWorlds/&lt;/p&gt;
+&lt;p&gt;One last thing you will need to do is to edit the server.properties to replace the value of level-dir to match the actual name of your world.&lt;/p&gt;
+&lt;p&gt;That is all for this guide. Massive thanks to &lt;a href="https://twitter.com/jhy1428419198"&gt;HongyiMC&lt;/a&gt; and &lt;a href="https://github.com/codehz"&gt;CodeHz&lt;/a&gt; for helping me with setting up my server and answering my questions.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;My first time playing Minecraft in Realm was in Windows Central Community realm, it was my first experience playing real online multiplayer game. It was exciting and fun playing with other people in the realm. I used to play a lot in the realm but when the world started to expand the server started to lag a lot because of tons of Redstone contraption. We started to talk about moving to a self-hosted server rather than using Mojang's realm but we couldn't find a way to host the server. Fast forward a year and here we are hosting a Minecraft Bedrock Edition server.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>https://blog.niteshrestha.com.np/posts/get-set-deploy</id>
+		<title>Get. Set. Deploy</title>
+		<link href="https://blog.niteshrestha.com.np/posts/get-set-deploy" />
+		<link rel="enclosure" type="image" href="https://blog.niteshrestha.com.np/posts/images/get-set-deploy.png" />
+		<updated>2017-09-22T00:00:00Z</updated>
+		<content>&lt;p&gt;I was talking to a friend yesterday and he asked me if I had complied UWP app in Azure VM. I had compiled Windows 8.1 apps years ago but not UWP so I said no. I told him I would give it a try later on as I did not have internet access in my laptop at that time but waiting for that long was hard so I decided to do it from my lovely beloved Lumia. I already had Remote Desktop installed.&lt;/p&gt;
+&lt;p&gt;I logged into Azure Portal and fired up a Standard DS2_v2 Windows 10 VM I did not time this process. Once I had remote access to the VM I started timing it I went to Visual Studio website and downloaded the installer. I ran the installer and choose to install only the default Universal Windows Platform development workload. This would install Visual Studio core editor, Blend for Visual Studio, .NET Native, NuGet package manager, Universal Windows Platform tools, Windows 10 SDK 15063 and IntelliTrace. Install size was a little over 9 GB.&lt;/p&gt;
+&lt;p&gt;While Visual Studio was installing I went and downloaded the Kliva Solution from GitHub and extracted. It took about 10 minutes to complete the entire installation and Visual Studio was ready to launch. I launched Kliva.sln and I choose not to sign in, Visual Studio was preparing for first launch. Since I had only installed 15063 SDK Kliva solution did not load as it requires 14393 SDK so I closed Visual and installed 14393 SDK once done I launched Kliva project, enable Developer mode in Settings and choose x64 and clicked Local Machine and Visual Studio started restoring NuGet packages for the project, Build, Installing missing frameworks and Deploy. From first launch of Visual Studio to deploying Kliva app took another 8 minutes. In total it took about 18 minutes to go from nothing to being able to Build and Deploy in about 18 minutes.&lt;/p&gt;
+&lt;p&gt;Since Visual Studio 2017 allows you to install only what you need it's a benefit. Imagine doing this in previous versions of Visual Studio, INSTALL EVERYTHING EVEN IF YOU WILL NEVER USE IT. Now in my experience this was insanely fast as it takes me a lot more than 18 minutes to install Visual Studio in my i7 6th Gen, 8 GB machine. Am I the only one who thinks that this is insanely fast?&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I was talking to a friend yesterday and he asked me if I had complied UWP app in Azure VM. I had compiled Windows 8.1 apps years ago but not UWP so I said no. I told him I would give it a try later on as I did not have internet access in my laptop at that time but waiting for that long was hard so I decided to do it from my lovely beloved Lumia. I already had Remote Desktop installed.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>https://blog.niteshrestha.com.np/posts/my-adobe-xd-experience</id>
+		<title>My Adobe XD Experience</title>
+		<link href="https://blog.niteshrestha.com.np/posts/my-adobe-xd-experience" />
+		<link rel="enclosure" type="image" href="https://blog.niteshrestha.com.np/assets/images/header.png" />
+		<updated>2017-06-13T00:00:00Z</updated>
+		<content>&lt;p&gt;It's been almost 6 months since Adobe Experience Design launched on Windows 10 and I'm in love with it. Since when it was first released lots of features has been added and more features are coming with monthly updates. Thanks to entire team for making such an amazing product that I love to use. I have been using Adobe XD on Windows 10 since Day 1 and the amount of work the team has done is absolutely fantastic. There are so many things I love about it and there are some thing that I wish was there in it and in this article I'm going to talk about things that make me happy using Adobe XD and things that I wish was available in it.&lt;/p&gt;
+&lt;p&gt;So first of all lets talk about things I love about it.&lt;/p&gt;
+&lt;p&gt;XD is amazingly &lt;strong&gt;simple&lt;/strong&gt; tool to design UI/UX, if you read my previous article you would know that I used to use &lt;a href="https://blog.niteshrestha.com.np/from-powerpoint-to-adobe-xd-3439e7adb518"&gt;Microsoft PowerPoint to design UI &lt;/a&gt;because I couldn't be bothered to learn how to use Photoshop or Illustrator, I tried to design in Illustrator but it didn't work for me. Simply put I found other tools complex or I was lead to believe that they are complex and hard to use but XD is simply simple and easy to use. I didn't have to watch some video tutorials to start using XD, I just installed it and started using it and it was simple not very complex. I did look into the tutorial file that came with it and it was easy to learn. &lt;a href="https://twitter.com/search?q=%23protip%20from%3Aelainecchao&amp;amp;src=typd"&gt;#ProTips from Elaine Chao&lt;/a&gt; also helped a lot to master XD. It doesn't take a lot of time to load, it's fast and smooth.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Repeat Grid&lt;/strong&gt;, this is on the top of my favorite things about XD. Repeat Grid, mind blown. It's such an amazing feature to have, I can't express how much I love this feature. It make life so much easier, no one likes to do same things again and again. Repeat Grid to rescue. Before I knew what Repeat Grid was I was copy pasting same thing again and again, and when I had to change font size or some other property I had to change it multiple times or select all elements and then change but Repeat Grid solves all those issue and makes your life a hell of a lot easier. If you haven't tried Repeat Grid in XD you are missing a lot. And Boolean Groups it's like one of those features that you didn't know you wanted but when you get it you are like I can't live without it.&lt;/p&gt;
+&lt;p&gt;When XD was first released in Windows 10 it had some reliability issue, it used to crash on me many times and I would loose all the unsaved work and it was annoying but the team fixed it and I don't remember when was the last time it crashed on me.&lt;/p&gt;
+&lt;p&gt;Over time XD has definitely become a better product and it continues to be better. To build an amazing product you need a team of amazing people which XD certainly has but there are few things that I wish was there in XD.&lt;/p&gt;
+&lt;p&gt;Dark Mode!!! I might even say this is the most important thing to me, I love Dark Mode. Dark mode on Windows 10, Dark Mode on my beloved Windows 10 Mobile and Dark Mode in Visual Studio. If XD had a Dark Mode that would make me a happy person, If you also want Dark Mode in XD go &lt;a href="https://adobexd.uservoice.com/forums/353007-adobe-xd-feature-requests/suggestions/12940362-dark-interface-overall-ui-including-side-panels"&gt;Vote it&lt;/a&gt;. Other thing that I'm waiting for is the Gradient colors.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3rd Party plugins&lt;/strong&gt; yes please, allowing 3rd party developers to extend XD with Plugins is a great idea and you should definitely &lt;a href="https://adobexd.uservoice.com/forums/353007-adobe-xd-feature-requests/suggestions/12945705-allow-adobe-xd-to-have-third-party-plugins-extensi"&gt;vote it&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Last but definitely not the least my ultimate wish &lt;strong&gt;Adobe XD Mobile for Windows 10 Mobile&lt;/strong&gt;, this is undoubtedly the most important thing for me, it's more important than Dark Mode. I hope some day my wish will come true and if you want to help my wish come to go &lt;a href="https://adobexd.uservoice.com/forums/353007-adobe-xd-feature-requests/suggestions/17598214-adobe-xd-mobile-support-for-windows-10-mobile"&gt;Vote for it&lt;/a&gt;. Honestly my idea received more votes than I thought it would so I'm hopeful about it happening SoonΓäó&lt;/p&gt;
+&lt;p&gt;So far I'm a happy man using Adobe XD and definitely check out &lt;a href="https://twitter.com/search?q=%23protip%20from%3Aelainecchao&amp;amp;src=typd"&gt;#ProTips from Elaine Chao&lt;/a&gt;&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;It's been almost 6 months since Adobe Experience Design launched on Windows 10 and I'm in love with it. Since when it was first released lots of features has been added and more features are coming with monthly updates. Thanks to entire team for making such an amazing product that I love to use. I have been using Adobe XD on Windows 10 since Day 1 and the amount of work the team has done is absolutely fantastic. There are so many things I love about it and there are some thing that I wish was there in it and in this article I'm going to talk about things that make me happy using Adobe XD and things that I wish was available in it.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>https://blog.niteshrestha.com.np/posts/from-powerpoint-to-adobe-xd</id>
+		<title>From PowerPoint to Adobe XD</title>
+		<link href="https://blog.niteshrestha.com.np/posts/from-powerpoint-to-adobe-xd" />
+		<link rel="enclosure" type="image" href="https://blog.niteshrestha.com.np/assets/images/header.png" />
+		<updated>2017-01-27T00:00:00Z</updated>
+		<content>&lt;h1 id="from-powerpoint-to-adobe-xd"&gt;From PowerPoint to Adobe XD&lt;/h1&gt;
+&lt;p&gt;Designing a great app requires a great designing tool, for me that tool used to be PowerPoint. I'm that kind of guy who doesn't know how to use Photoshop or Illustrator. I have tried various other prototyping solutions which were good but I didn't enjoy them. I mostly design UWP Apps but I'm not a professional it's my hobby, it's a thing I enjoy doing. So, I choose to stick with PowerPoint. This article is about how I used to use PowerPoint as UI designing tool and then Adobe XD happened.&lt;/p&gt;
+&lt;h3 id="powerpoint-and-adobe-xd-as-designing-tool"&gt;PowerPoint and Adobe XD as designing tool&lt;/h3&gt;
+&lt;p&gt;You might ask &amp;quot;Seriously, PowerPoint?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/posts/images/powerpoint.png" class="img-fluid" alt="Microsoft PowerPoint 2016 as UI designing tool." /&gt;
+&lt;em&gt;Microsoft PowerPoint 2016 as UI designing tool.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Yes, it can be used to design basic UI with Storyboard Shapes which is similar to UI Kits which contains predefined set of UI controls to make designing faster and easier. Microsoft provides design &lt;a href="http://developer.microsoft.com/en-us/windows/design/assets"&gt;resources to design UWP apps &lt;/a&gt;for PowerPoint along with Adobe Photoshop and Illustrator. This deck has everything you need to quickly mock up wireframes for UWP apps, including controls and layouts. This template contains screen for Phones, Tablets and PCs. It's great tool to make quick UI and you can manipulate formats of the elements in your UI. Let me emphasis this for basic and quick Mockups PowerPoint is a good choice but for professional use it's not up to the standard. Storyboard Shapes and Templates helps you get started with UWP app design easily. Many people told me why you use PowerPoint for UI designing there are other tools for it like Adobe Photoshop or Adobe Illustrator but I was not willing to learn the skills required to use those advanced tools.&lt;/p&gt;
+&lt;p&gt;But things changed, there was a new kid in the town &amp;quot;Adobe XD&amp;quot;. I had previously heard about it but never really bothered to look about it, but Dennis Bednarz &lt;a href="https://twitter.com/DennisBednarz/status/805868964555399169"&gt;tweeted&lt;/a&gt; a screenshot of pre-release version running on Windows 10, at this point I was curious about it.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/posts/images/adobexd_findmydevice_mock.png" class="img-fluid" alt="Adobe Experience Design CC (Beat) for Windows." /&gt;&lt;em&gt;Adobe Experience Design CC (Beat) for Windows.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I looked around for Adobe XD but it was in private beta so no luck there. They released first public beta of XD on Dec 12 for Windows 10, before then I didn't know it was a UWP app which is cool. It shows how a UWP app can be distributed outside of Windows Store, in this case via Adobe Creative Cloud App. Initial impression were amazing. It's startup time is fast, some really cool features like Repeat Grid is amazing. PowerPoint was a thing of yesterday now. Even though this software is incomplete as it's the first public beta it's pretty useful. They have promised to bring Windows version in parity with Mac version along with monthly updates. Thing like Repeat Grid, and how you can manipulate each point of any element is something I like in it. Export options are limited to .png but can be exported to various scales. Live changes to Preview Windows is the winner, I don't have to close the windows and start again to see my changes to UI and interaction.&lt;/p&gt;
+&lt;p&gt;There are many things missing which they said will be added in future updates. I miss blur, gradient the most, every time I need a blur or gradient I still go for PowerPoint but hopefully they will soon be added. UI Kit is the other thing that is interesting but missing. I have had times when I had to remove some layers to reach the layer beneath it which is tedious sometimes. There are bugs which has resulted in me loosing hours of my work. Contextual menu while using Dark Theme is hard to read.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/posts/images/adobexd_contextual_menu.png" class="img-fluid" alt="Contextual menu when using Dark Moe" /&gt;&lt;em&gt;Contextual menu when using Dark Mode&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Coming from PowerPoint to Adobe XD, my experience so far has been amazing considering it's the first public beta. Bye PowerPoint as UI designing tool, you served me well, Welcome Adobe Experience Design. If you haven't tried it yet I would encourage you to give it a try. I have tried few other prototyping and designing tools like Just in Mind Prototyper, Mockups for Desktop, and few others but I can confidently say XD is the Best I ever had and it's not done yet it's just the first public beta. I can't wait to see what comes with future updates.&lt;/p&gt;
+&lt;h3 id="one-last-thing"&gt;One Last Thing&lt;/h3&gt;
+&lt;p&gt;There is always that one last thing it being a UWP makes me wonder how much of a work will it be to bring it to Windows 10 Mobile. Adobe XD Mobile is available in Android and iOS only which allows you to Preview your design in in your mobile device, if you want Adobe XD Mobile in Windows 10 Mobile I have filed a &lt;a href="https://adobexd.uservoice.com/forums/353007-adobe-xd-feature-requests/suggestions/17598214-adobe-xd-mobile-support-for-windows-10-mobile"&gt;Uservoice Request&lt;/a&gt; in their forums don't forget to upvote it.&lt;/p&gt;
+&lt;p&gt;We have yet to receive January Update for XD hopefully it will introduce some of the features I have been looking for. I wish there was a way to test pre-release builds of XD just like Windows Insider program. This was my experience using Adobe XD coming from PowerPoint. Have you used XD and what was your experience? Do share with me either in the comments or in &lt;a href="https://twitter.com/RipleyWopr"&gt;Twitter.&lt;/a&gt;&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Designing a great app requires a great designing tool, for me that tool used to be PowerPoint. I'm that kind of guy who doesn't know how to use Photoshop or Illustrator. I have tried various other prototyping solutions which were good but I didn't enjoy them. I mostly design UWP Apps but I'm not a professional it's my hobby, it's a thing I enjoy doing. So, I choose to stick with PowerPoint. This article is about how I used to use PowerPoint as UI designing tool and then Adobe XD happened.&lt;/p&gt;</summary>
+	</entry>
+</feed>
