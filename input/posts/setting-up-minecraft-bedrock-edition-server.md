@@ -49,7 +49,10 @@ to start a session and then type
 
 Now your server should be up and running and you should see the following screen.
 
-![MCPEServer running](/posts/images/minecraft_mcpeserver.png)*MCPEServer running*
+<figure>
+    <img src="/posts/images/minecraft_mcpeserver.png" class="img-responsive"></img>
+    <figcaption class="text-center">MCPE Server running</figcaption>
+</figure>
 
 ## Making the world you want
 
@@ -63,7 +66,10 @@ If you fancy some mods developer has also made some mods that you can find [here
 
     ./mcpeserver mods --remote
 
-![mods list](https://cdn-images-1.medium.com/max/2000/1*Z3T7_WAo_7JHVY6zbn2QjA.png)
+<figure>
+    <img src="/posts/images/mcpeserver_mods.png" class="img-responsive"></img>
+    <figcaption>Mods List</figcaption>
+</figure>
 
 and you can download and apply mod you want using
 
