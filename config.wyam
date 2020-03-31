@@ -5,7 +5,7 @@
 Settings[Keys.Host] = "blog.niteshrestha.com.np";
 Settings[BlogKeys.Title] = "Nitesh Shrestha";
 Settings[BlogKeys.Description] = "Nitesh Shrestha!";
-Settings[BlogKeys.Intro] = "Me & Visual Studio are BBFs. To me C# isn't a language, it's a lifestyle";
+Settings[BlogKeys.Intro] = ".NET Developer";
 Settings[Keys.LinksUseHttps] = true;
 Settings[BlogKeys.Image] = "/assets/images/header.png";
 
