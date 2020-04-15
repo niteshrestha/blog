@@ -1,0 +1,26 @@
+@model IEnumerable<IDocument>
+
+@{
+    foreach (IDocument post in Model)
+    {
+        string lead = post.String(BlogKeys.Lead);
+        <li class="col-12 d-flex width-full py-4 border-bottom public fork">
+            <div class="col-12 col-lg-12 d-inline-block">
+                <div class="d-inline-block mb-1">
+                    <h3>
+                        <a href="@Context.GetLink(post)">@post.WithoutSettings.String(BlogKeys.Title)</a>
+                    </h3>
+                </div>
+
+                <div name="posts-post">
+                    @lead
+                </div>
+
+                <div class="f6 text-gray mt-2">
+                    Created <relative-time datetime="@(post.Get<DateTime>(BlogKeys.Published).ToLongDateString(Context))" class="no-wrap">
+                        @(post.Get<DateTime>(BlogKeys.Published).ToLongDateString(Context))</relative-time>
+                </div>
+            </div>
+        </li>
+    }
+}

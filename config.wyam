@@ -7,6 +7,6 @@ Settings[BlogKeys.Title] = "Nitesh Shrestha";
 Settings[BlogKeys.Description] = "Nitesh Shrestha!";
 Settings[BlogKeys.Intro] = ".NET Developer";
 Settings[Keys.LinksUseHttps] = true;
-Settings[BlogKeys.Image] = "/assets/images/header.png";
+Settings[BlogKeys.Image] = "/assets/images/me.jpg";
 
 // Add any pipeline customizations here
