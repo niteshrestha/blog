@@ -4,21 +4,22 @@
     foreach (IDocument post in Model)
     {
         string lead = post.String(BlogKeys.Lead);
-        <li class="col-12 d-flex width-full py-4 border-bottom public fork">
-            <div class="col-12 col-lg-12 d-inline-block">
-                <div class="d-inline-block mb-1">
-                    <h3>
+        DateTime Published = post.Get<DateTime>(BlogKeys.Published).Date;
+        <li class="post">
+            <div class="post-header">
+                <div class="meta">
+                    <div class="date">
+                        <span class="day">@Published.ToString("dd")</span>
+                        <span class="rest">@Published.ToString("MMM") @Published.Year</span>
+                    </div>
+                </div>
+                <div class="matter">
+                    <h4 class="title small">
                         <a href="@Context.GetLink(post)">@post.WithoutSettings.String(BlogKeys.Title)</a>
-                    </h3>
-                </div>
-
-                <div name="posts-post">
-                    @lead
-                </div>
-
-                <div class="f6 text-gray mt-2">
-                    Created <relative-time datetime="@(post.Get<DateTime>(BlogKeys.Published).ToLongDateString(Context))" class="no-wrap">
-                        @(post.Get<DateTime>(BlogKeys.Published).ToLongDateString(Context))</relative-time>
+                    </h4>
+                    <span class="description">
+                        @lead
+                    </span>
                 </div>
             </div>
         </li>
