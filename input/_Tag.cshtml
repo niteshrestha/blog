@@ -1,0 +1,14 @@
+@{
+    var postPages = Model.DocumentList(Keys.PageDocuments).OrderByDescending(x => x.Get<DateTime>(BlogKeys.Published));
+    string tag = Model.String(BlogKeys.Tag).ToLowerInvariant().Replace(' ', '-');
+    tag = tag.StartsWith(".") ? tag.Substring(1) : tag;
+}
+<div class="container wrapper list">
+    @Html.Partial("_Header")
+    <h2 class="page-title">@tag</h2>
+    <ul class="posts flat">
+    @Html.Partial("_PostList", postPages)
+    </ul>
+</div>
+<ul>
+

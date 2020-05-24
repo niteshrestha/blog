@@ -4,8 +4,8 @@
 // Customize your settings and add new ones here
 Settings[Keys.Host] = "blog.niteshrestha.com.np";
 Settings[BlogKeys.Title] = "Nitesh Shrestha";
-Settings[BlogKeys.Description] = "Nitesh Shrestha!";
-Settings[BlogKeys.Intro] = ".NET Developer";
+Settings[BlogKeys.Description] = "Blog of Nitesh Shrestha!";
+Settings[BlogKeys.Intro] = "To me C# isn't a language, it's a lifestyle";
 Settings[Keys.LinksUseHttps] = true;
 Settings[BlogKeys.Image] = "/assets/images/me.jpg";
 

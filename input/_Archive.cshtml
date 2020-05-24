@@ -1,70 +1,31 @@
-<div class="application-main " data-commit-hovercards-enabled>
-    <main id="js-pjax-container" data-pjax-container>
-            <div class="container-xl clearfix px-3 mt-4">
-                @Html.Partial("_UserProfile")
-                <div class="col-lg-9 col-md-8 col-12 float-md-left pl-md-2">
-                    <div class="UnderlineNav width-full user-profile-nav top-0 is-placeholder"
-                        style="visibility: hidden; display: none; height: 56px;"></div>
-                    <div class="UnderlineNav width-full user-profile-nav js-sticky top-0"
-                        style="position: static; top: 0px; left: 330.5px; width: 911.5px;">
-                        <nav class="UnderlineNav-body" data-pjax aria-label="User profile">
-                            <a aria-current="page" class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 " href="/">
-                                Overview
-                            </a>
-                            <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 selected" href="/posts">
-                                Posts
-                                <span class="Counter hide-lg hide-md hide-sm">
-                                </span>
-                            </a>
-                            <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3 " href="/about">
-                                About
-                            </a>
-                        </nav>
-                    </div>
+Title: Posts
+---
 
-                    <div class="position-relative">
-                        <div id="user-repositories-list">
-                            <ul data-filterable-for="your-repos-filter" data-filterable-type="substring">
-                                @{
-                                    foreach(IGrouping<int, IDocument> group in Model.DocumentList(Keys.PageDocuments)
-                                        .Where(x => x.ContainsKey(BlogKeys.Published))
-                                        .OrderByDescending(x => x.Get<DateTime>(BlogKeys.Published))
-                                        .GroupBy(x => x.Get<DateTime>(BlogKeys.Published).Year)
-                                        .OrderByDescending(x => x.Key))
-                                    {
-                                        @Html.Partial("_PostList", group);
-                                    }
+<div class="container wrapper list">
+    @Html.Partial("_Header")
+    <h2 class="page-title">Posts</h2>
+    <ul class="posts flat">
+    @{
+        foreach(IGrouping<int, IDocument> group in Model.DocumentList(Keys.PageDocuments)
+            .Where(x => x.ContainsKey(BlogKeys.Published))
+            .OrderByDescending(x => x.Get<DateTime>(BlogKeys.Published))
+            .GroupBy(x => x.Get<DateTime>(BlogKeys.Published).Year)
+            .OrderByDescending(x => x.Key))
+        {
+            @Html.Partial("_PostList", group);
+        }
 
-                                    <div class="paginate-container">
-                                        <div class="BtnGroup" data-test-selector="pagination">
-                                            @if(Model.Bool(Keys.HasPreviousPage))
-                                            {
-                                                <a rel="nofollow" class="btn btn-outline BtnGroup-item" href="@(Context.GetLink(Model.Document(Keys.PreviousPage)))">Previous</a>
-                                            }
-                                            else
-                                            {
-                                                <button class="btn btn-outline BtnGroup-item" disabled="disabled">Previous</button>
-                                            }
+        <ul class="pagination">
+            @if(Model.Bool(Keys.HasPreviousPage))
+            {
+                <a href="@(Context.GetLink(Model.Document(Keys.PreviousPage)))" class="page-link" aria-label="Previous"><span aria-hidden="true">← Prev page</span></a>
+            }
 
-                                            @if(Model.Bool(Keys.HasPreviousPage))
-                                            {
-                                                <a rel="nofollow" class="btn btn-outline BtnGroup-item" href="@(Context.GetLink(Model.Document(Keys.NextPage)))">Next</a>
-                                            }
-                                            else
-                                            {
-                                                <button class="btn btn-outline BtnGroup-item" disabled="disabled">Next</button>
-                                            }
-                                        </div>
-                                    </div>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </main>
+            @if(Model.Bool(Keys.HasPreviousPage))
+            {
+                <a href="@(Context.GetLink(Model.Document(Keys.NextPage)))" class="page-link" aria-label="Next"><span aria-hidden="true">Next page →</span></a>
+            }
+        </ul>
+    }
+    </ul>
 </div>
-
-<script>
-    document.querySelector('.Counter').textContent = document.querySelectorAll('h3').length
-</script>
