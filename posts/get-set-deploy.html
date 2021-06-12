@@ -1,0 +1,151 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Get. Set. Deploy - Nitesh Shrestha</title>
+        <meta name="description" content="Blog of Nitesh Shrestha!" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link type="application/rss+xml" rel="alternate" title="Nitesh Shrestha" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Nitesh Shrestha" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700" rel="stylesheet" type="text/css">
+        <meta name="application-name" content="Nitesh Shrestha" />
+        <meta name="msapplication-tooltip" content="Nitesh Shrestha" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Get. Set. Deploy - Nitesh Shrestha" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://blog.niteshrestha.com.np/posts/get-set-deploy" />
+
+        <link href="/assets/css/normalize.css" rel="stylesheet" />
+<link href="/assets/css/main.css" rel="stylesheet" />
+<link href="/assets/css/dark.css" rel="stylesheet" />
+
+
+        </head>
+        <body>
+                <div class="container wrapper">
+    <div class="header">
+    <div class="avatar">
+        <a href="/">
+            <img src="/assets/images/me.jpg" alt="/assets/images/me.jpg" />
+        </a>
+    </div>
+	<h1 class="site-title"><a href="/">Nitesh Shrestha</a></h1>
+	<div class="site-description">
+		<p>To me C# isn&#x27;t a language, it&#x27;s a lifestyle</p>
+		<nav class="nav social">
+			<ul class="flat">
+                <li><a href="https://github.com/niteshrestha" title="Github"><i data-feather="github"></i></a></li>
+                <li><a href="https://twitter.com/ripleywopr" title="Twitter"><i data-feather="twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/niteshrestha/" title="LinkedIn"><i data-feather="linkedin"></i></a></li>
+                <li><a href="mailto:hello@niteshrestha.com.np" title="Email"><i data-feather="mail"></i></a></li>
+                <li><a href="/feed.rss" title="RSS"><i data-feather="rss"></i></a></li>
+			</ul>
+		</nav>
+        <span class="scheme-toggle"><a href="#" id="scheme-toggle"></a>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			<li>
+				<a href="/">Home</a>
+			</li>
+			<li>
+				<a href="/posts">All posts</a>
+			</li>
+			<li>
+				<a href="/about">About</a>
+			</li>
+			<li>
+				<a href="/tags">Tags</a>
+			</li>
+		</ul>
+	</nav>
+</div>
+
+    <div class="post">
+        <div class="post-header">
+            <div class="meta">
+                <div class="date">
+                    <span class="day">22</span>
+                    <span class="rest">Sep 2017</span>
+                </div>
+            </div>
+            <div class="matter">
+                <h1 class="title">Get. Set. Deploy</h1>
+            </div>
+        </div>
+        <div class="markdown">
+            <p>I was talking to a friend yesterday and he asked me if I had complied UWP app in Azure VM. I had compiled Windows 8.1 apps years ago but not UWP so I said no. I told him I would give it a try later on as I did not have internet access in my laptop at that time but waiting for that long was hard so I decided to do it from my lovely beloved Lumia. I already had Remote Desktop installed.</p>
+<p>I logged into Azure Portal and fired up a Standard DS2_v2 Windows 10 VM I did not time this process. Once I had remote access to the VM I started timing it I went to Visual Studio website and downloaded the installer. I ran the installer and choose to install only the default Universal Windows Platform development workload. This would install Visual Studio core editor, Blend for Visual Studio, .NET Native, NuGet package manager, Universal Windows Platform tools, Windows 10 SDK 15063 and IntelliTrace. Install size was a little over 9 GB.</p>
+<p>While Visual Studio was installing I went and downloaded the Kliva Solution from GitHub and extracted. It took about 10 minutes to complete the entire installation and Visual Studio was ready to launch. I launched Kliva.sln and I choose not to sign in, Visual Studio was preparing for first launch. Since I had only installed 15063 SDK Kliva solution did not load as it requires 14393 SDK so I closed Visual and installed 14393 SDK once done I launched Kliva project, enable Developer mode in Settings and choose x64 and clicked Local Machine and Visual Studio started restoring NuGet packages for the project, Build, Installing missing frameworks and Deploy. From first launch of Visual Studio to deploying Kliva app took another 8 minutes. In total it took about 18 minutes to go from nothing to being able to Build and Deploy in about 18 minutes.</p>
+<p>Since Visual Studio 2017 allows you to install only what you need it's a benefit. Imagine doing this in previous versions of Visual Studio, INSTALL EVERYTHING EVEN IF YOU WILL NEVER USE IT. Now in my experience this was insanely fast as it takes me a lot more than 18 minutes to install Visual Studio in my i7 6th Gen, 8 GB machine. Am I the only one who thinks that this is insanely fast?</p>
+
+        </div>
+
+        <div class="tags">
+            <ul class="flat">
+                        <li><a href="/tags/Azure">Azure</a></li>
+                        <li><a href="/tags/Microsoft">Microsoft</a></li>
+                        <li><a href="/tags/UWP">UWP</a></li>
+                        <li><a href="/tags/Visual-Studio">Visual Studio</a></li>
+                        <li><a href="/tags/Windows-10">Windows 10</a></li>
+            </ul>
+        </div>
+
+        <div id="disqus_thread" class='container-lg clearfix new-discussion-timeline experiment-repo-nav p-responsive'></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'niteshrestha'; // required: replace example with your forum shortname
+    var disqus_identifier = 'get-set-deploy';
+    var disqus_title = 'Get. Set. Deploy';
+    var disqus_url = 'https://blog.niteshrestha.com.np/posts/get-set-deploy';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</div>
+
+
+                <footer>
+                        <div class="footer wrapper">
+	<nav class="nav">
+		<div>2021 © Nitesh Shrestha |  <a href="https://wyam.io">Generated by Wyam</a></div>
+	</nav>
+</div>
+
+                </footer>
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+                        <script src="/assets/js/html5shiv.js"></script>
+                        <script src="/assets/js/respond.min.js"></script>
+                <![endif]-->
+
+                <script src="/assets/js/feather.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script>feather.replace()</script>
+        </body>
+</html>
+
